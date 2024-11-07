@@ -4,7 +4,7 @@ import JobListing from "./JobListing.vue";
 import { RouterLink } from "vue-router";
 import axios from "axios";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const state = reactive({
   jobs: [],
   isLoading: true,
@@ -20,7 +20,7 @@ defineProps({
 
 onMounted(async () => {
   try {
-    const response = await axios.get("/api/jobs");
+    const response = await axios.get(`${apiUrl}/jobs`);
     state.jobs = response.data;
   } catch (error) {
     console.log("Error fetching jobs", error);

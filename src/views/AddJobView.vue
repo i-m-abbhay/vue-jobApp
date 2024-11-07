@@ -2,7 +2,7 @@
 import router from "@/router";
 import axios from "axios";
 import { useToast } from "vue-toastification";
-
+const apiUrl = import.meta.env.VITE_API_URL;
 import { reactive } from "vue";
 const form = reactive({
   type: "Part-Time",
@@ -35,7 +35,7 @@ const handleSubmit = async () => {
     },
   };
   try {
-    const response = await axios.post("/api/jobs", newJob);
+    const response = await axios.post(`${apiUrl}/jobs`, newJob);
     toast.success("Job Added Successfully!");
     // @todo - show toast
     router.push(`/jobs/${response.data.id}`);
